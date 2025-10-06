@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Solace - Accessible Mental Healthcare for India</title>
-    <meta name="description" content="MindBridge connects you with RCI-licensed therapists for affordable and accessible online mental health services in India. Book a free session today.">
+    <meta name="description" content="Solace connects you with RCI-licensed therapists for affordable and accessible online mental health services in India. Book a free session today.">
     
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -18,23 +18,30 @@
     <!-- Font Awesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" xintegrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
-    <!-- Custom Styles & Configuration -->
     <style>
         :root {
             --primary: #4E9F9D;
-            --text-accent: #0C3C44;
+            --text-accent: #0C4444;
             --highlight: #FFC857;
-            --background: #F9FAFB;
+            --background: #f1f5f9; /* Enhanced contrast background */
         }
+
         body {
             font-family: 'Inter', sans-serif;
             background-color: var(--background);
-            color: #374151;
+            color: #1f2937; /* Darker base text for readability */
         }
+
         h1, h2, h3, h4, h5, h6 {
             font-family: 'Poppins', sans-serif;
             color: var(--text-accent);
         }
+        
+        /* Custom Tailwind configuration */
+        .tailwind-config {
+            display: none;
+        }
+        
         .text-primary { color: var(--primary); }
         .bg-primary { background-color: var(--primary); }
         .border-primary { border-color: var(--primary); }
@@ -42,33 +49,46 @@
         .bg-accent { background-color: var(--text-accent); }
         .text-highlight { color: var(--highlight); }
         .bg-highlight { background-color: var(--highlight); }
-        
+
         .cta-button {
             transition: all 0.3s ease;
         }
+
         .cta-button:hover {
             transform: translateY(-2px);
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
         }
-        .therapist-card {
+
+        .therapist-card, .team-card, .blog-card {
             transition: all 0.3s ease;
             border: 1px solid #e5e7eb;
         }
-        .therapist-card:hover {
+
+        .therapist-card:hover, .team-card:hover, .blog-card:hover {
             transform: translateY(-5px);
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1); /* Enhanced hover shadow */
             border-color: var(--primary);
         }
+
         .page {
             display: none;
         }
+
         .page.active {
             display: block;
+            animation: fadeIn 0.5s ease-in-out;
         }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
         .nav-link {
             position: relative;
             transition: color 0.3s;
         }
+
         .nav-link::after {
             content: '';
             position: absolute;
@@ -80,14 +100,56 @@
             background-color: var(--primary);
             transition: width 0.3s ease;
         }
+
         .nav-link:hover::after,
         .nav-link.active-link::after {
             width: 100%;
         }
+        
+        /* Custom styles for time slots */
+        .time-slot {
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        .time-slot.selected {
+            background-color: var(--primary);
+            color: white;
+            border-color: var(--primary);
+        }
+        
+        .session-type-btn.active {
+            background-color: var(--primary);
+            color: white;
+            border-color: var(--primary);
+        }
+        .session-type-btn:not(.active) {
+            background-color: white;
+            color: #374151;
+        }
+
     </style>
 </head>
 
 <body class="antialiased">
+    <div class="tailwind-config">
+        <script>
+            tailwind.config = {
+              theme: {
+                extend: {
+                  colors: {
+                    primary: '#4E9F9D',
+                    accent: '#0C4444',
+                    highlight: '#FFC857',
+                  },
+                   fontFamily: {
+                    sans: ['Inter', 'sans-serif'],
+                    heading: ['Poppins', 'serif'],
+                  }
+                }
+              }
+            }
+        </script>
+    </div>
 
     <!-- Header -->
     <header id="main-header" class="bg-white/80 backdrop-blur-lg shadow-sm sticky top-0 z-50">
@@ -144,7 +206,7 @@
                         </div>
                     </div>
                     <div>
-                        <img src="hug.png" alt="A calming abstract gradient representing mental clarity" class="rounded-lg shadow-xl w-4/6 aspect-square object-cover ml-36">
+                         <img src="hug.png" alt="A calming abstract gradient representing mental clarity" class="rounded-lg shadow-xl w-4/6 aspect-square object-cover ml-36">
                     </div>
                 </div>
             </div>
@@ -156,7 +218,7 @@
                     <p class="text-gray-600 mb-12 max-w-2xl mx-auto">We've designed our platform to be simple, secure, and supportive from the very first click.</p>
                     <div class="grid md:grid-cols-3 gap-10">
                         <!-- Step 1 -->
-                        <div class="p-8 bg-white rounded-lg shadow-md text-center">
+                        <div class="p-8 bg-white rounded-lg shadow-lg text-center">
                             <div class="bg-primary/10 text-primary w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6">
                                 <i class="fas fa-search text-2xl"></i>
                             </div>
@@ -164,7 +226,7 @@
                             <p class="text-gray-600">Browse profiles of RCI-licensed professionals. Filter by specialty, language, and availability to find the right fit for you.</p>
                         </div>
                         <!-- Step 2 -->
-                        <div class="p-8 bg-white rounded-lg shadow-md text-center">
+                        <div class="p-8 bg-white rounded-lg shadow-lg text-center">
                             <div class="bg-primary/10 text-primary w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6">
                                 <i class="fas fa-calendar-alt text-2xl"></i>
                             </div>
@@ -172,7 +234,7 @@
                             <p class="text-gray-600">Choose a time that works for you and book your session securely. Your first session is completely free to ensure we're the right choice.</p>
                         </div>
                         <!-- Step 3 -->
-                        <div class="p-8 bg-white rounded-lg shadow-md text-center">
+                        <div class="p-8 bg-white rounded-lg shadow-lg text-center">
                              <div class="bg-primary/10 text-primary w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6">
                                 <i class="fas fa-video text-2xl"></i>
                             </div>
@@ -193,101 +255,148 @@
                 </div>
 
                 <!-- Search & Filter Bar -->
-                <div class="bg-white p-6 rounded-lg shadow-md mb-12 sticky top-24 z-40">
+                <div class="bg-white p-6 rounded-lg shadow-lg mb-12 sticky top-24 z-40">
                     <div class="grid md:grid-cols-4 gap-4">
-                        <input type="text" placeholder="Search by name..." class="w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary">
-                        <select class="w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary">
+                        <input id="search-input" type="text" placeholder="Search by name..." class="w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary">
+                        <select id="specialty-filter" class="w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary">
                             <option value="">All Specialities</option>
-                            <option value="anxiety">Anxiety & Stress</option>
-                            <option value="depression">Depression</option>
-                            <option value="relationship">Relationship Issues</option>
-                            <option value="trauma">Trauma</option>
+                            <option value="Anxiety">Anxiety & Stress</option>
+                            <option value="Depression">Depression</option>
+                            <option value="Relationship Issues">Relationship Issues</option>
+                            <option value="Trauma">Trauma</option>
+                             <option value="Substance Abuse">Substance Abuse</option>
                         </select>
-                        <select class="w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary">
+                        <select id="language-filter" class="w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary">
                             <option value="">All Languages</option>
-                            <option value="english">English</option>
-                            <option value="hindi">Hindi</option>
-                            <option value="marathi">Marathi</option>
-                            <option value="tamil">Tamil</option>
+                            <option value="English">English</option>
+                            <option value="Hindi">Hindi</option>
+                            <option value="Marathi">Marathi</option>
+                            <option value="Tamil">Tamil</option>
+                             <option value="Punjabi">Punjabi</option>
                         </select>
-                        <button class="w-full bg-primary text-white font-bold py-3 px-4 rounded-lg cta-button">
+                        <button id="search-button" class="w-full bg-primary text-white font-bold py-3 px-4 rounded-lg cta-button">
                             <i class="fas fa-search mr-2"></i>Search
                         </button>
                     </div>
                 </div>
 
                 <!-- Therapist Grid -->
-                <div class="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
-                    <!-- Example Therapist Card 1 -->
-                    <div class="therapist-card bg-white rounded-lg overflow-hidden shadow-sm flex flex-col">
-                        <img src="https://images.unsplash.com/photo-1557862921-37829c790f19?q=80&w=2071&auto=format&fit=crop" alt="Portrait of Dr. Anjali Sharma" class="w-full h-56 object-cover">
-                        <div class="p-6 flex flex-col flex-grow">
-                            <div class="flex items-center justify-between mb-2">
-                                <h3 class="text-xl font-bold">Dr. Anjali Sharma</h3>
-                                <div class="flex items-center bg-green-100 text-green-700 px-2 py-1 rounded-full text-xs font-semibold">
-                                    <i class="fas fa-check-circle mr-1"></i> RCI Verified
+                <div id="therapist-grid-container" class="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+                    <!-- Therapist cards will be dynamically inserted here by JavaScript -->
+                </div>
+                 <div id="no-results" class="hidden text-center text-gray-600 mt-12">
+                    <i class="fas fa-search text-4xl mb-4 text-gray-400"></i>
+                    <h3 class="text-xl font-semibold">No therapists found</h3>
+                    <p>Try adjusting your search filters to find a match.</p>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Therapist Profile Page -->
+        <section id="therapist-profile" class="page">
+            <div class="container mx-auto px-6 py-12">
+                 <!-- Breadcrumbs -->
+                <nav class="text-sm mb-6" aria-label="Breadcrumb">
+                    <ol class="list-none p-0 inline-flex">
+                        <li class="flex items-center">
+                            <a href="#find-therapist" class="text-primary hover:underline page-link">Find a Therapist</a>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-chevron-right mx-2 text-gray-400"></i>
+                            <span id="profile-breadcrumb-name" class="text-gray-500">Therapist Profile</span>
+                        </li>
+                    </ol>
+                </nav>
+
+                <div class="grid lg:grid-cols-3 gap-12">
+                    <!-- Left Column: Therapist Details -->
+                    <div class="lg:col-span-2">
+                        <!-- Profile Header -->
+                        <div class="flex flex-col sm:flex-row items-start gap-6 bg-white p-8 rounded-lg shadow-lg mb-8">
+                            <img id="profile-image" src="" alt="Portrait of Therapist" class="w-32 h-32 rounded-full object-cover border-4 border-primary/20">
+                            <div>
+                                <div class="flex items-center gap-4 mb-1">
+                                    <h1 id="profile-name" class="text-3xl font-bold"></h1>
+                                    <div class="flex items-center bg-green-100 text-green-700 px-3 py-1 rounded-full text-sm font-semibold">
+                                        <i class="fas fa-check-circle mr-2"></i> RCI Verified
+                                    </div>
+                                </div>
+                                <p id="profile-title" class="text-primary text-lg font-medium"></p>
+                                <p id="profile-experience" class="mt-2 text-gray-600 font-medium"></p>
+                                <p id="profile-education" class="mt-1 text-gray-500"></p>
+                            </div>
+                        </div>
+
+                        <!-- About Section -->
+                        <div class="bg-white p-8 rounded-lg shadow-lg mb-8">
+                            <h2 class="text-2xl font-bold mb-4">About Me</h2>
+                            <p id="profile-about" class="text-gray-700 leading-relaxed"></p>
+                        </div>
+                        
+                        <!-- Details Grid -->
+                        <div class="space-y-8">
+                            <div class="grid md:grid-cols-2 gap-8">
+                                 <div class="bg-white p-8 rounded-lg shadow-lg">
+                                    <h3 class="text-xl font-bold mb-4 flex items-center"><i class="fas fa-comments mr-3 text-primary"></i> Languages</h3>
+                                    <div id="profile-languages-box" class="flex flex-wrap gap-3"></div>
+                                </div>
+                                 <div class="bg-white p-8 rounded-lg shadow-lg">
+                                    <h3 class="text-xl font-bold mb-4 flex items-center"><i class="fas fa-certificate mr-3 text-primary"></i> Affiliations</h3>
+                                    <div id="profile-affiliations-box" class="space-y-2"></div>
                                 </div>
                             </div>
-                            <p class="text-primary font-medium mb-3">Clinical Psychologist</p>
-                            <div class="space-y-2 mb-4 text-sm text-gray-600">
-                                <p><i class="fas fa-brain w-4 mr-2 text-gray-400"></i> Specializes in Anxiety, Depression</p>
-                                <p><i class="fas fa-language w-4 mr-2 text-gray-400"></i> Hindi, English</p>
+                             <div class="bg-white p-8 rounded-lg shadow-lg">
+                                <h3 class="text-xl font-bold mb-4 flex items-center"><i class="fas fa-user-friends mr-3 text-primary"></i> Concerns I Help With</h3>
+                                <div id="profile-concerns" class="grid grid-cols-2 md:grid-cols-3 gap-4"></div>
                             </div>
-                            <a href="#booking" data-therapist="Dr. Anjali Sharma" class="w-full block text-center bg-primary text-white font-semibold py-2.5 rounded-lg cta-button page-link mt-auto">Book a Session</a>
+                            <div class="bg-white p-8 rounded-lg shadow-lg">
+                                <h3 class="text-xl font-bold mb-4 flex items-center"><i class="fas fa-brain mr-3 text-primary"></i> My Expertise</h3>
+                                <div id="profile-expertise" class="grid grid-cols-2 md:grid-cols-3 gap-4"></div>
+                            </div>
                         </div>
                     </div>
-                    <!-- Example Therapist Card 2 -->
-                    <div class="therapist-card bg-white rounded-lg overflow-hidden shadow-sm flex flex-col">
-                        <img src="https://images.unsplash.com/photo-1590086782792-42dd2350150d?q=80&w=1887&auto=format&fit=crop" alt="Portrait of Rohan Verma" class="w-full h-56 object-cover">
-                        <div class="p-6 flex flex-col flex-grow">
-                            <div class="flex items-center justify-between mb-2">
-                                <h3 class="text-xl font-bold">Rohan Verma</h3>
-                                 <div class="flex items-center bg-green-100 text-green-700 px-2 py-1 rounded-full text-xs font-semibold">
-                                    <i class="fas fa-check-circle mr-1"></i> RCI Verified
+
+                    <!-- Right Column: Booking Widget -->
+                    <div class="lg:col-span-1">
+                        <div class="sticky top-28 bg-white p-6 rounded-lg shadow-xl">
+                            <h3 class="text-xl font-bold text-center mb-4">Schedule a Session</h3>
+                            
+                            <!-- Rate Display -->
+                             <div class="text-center mb-4 pb-4 border-b">
+                                <p class="text-gray-600 text-sm">Session Rate</p>
+                                <p id="profile-rate" class="text-3xl font-bold text-accent"></p>
+                            </div>
+
+                            <!-- Session Type -->
+                            <div class="mb-4">
+                                <label class="block text-sm font-medium text-gray-700 mb-2">Session Type</label>
+                                <div class="flex rounded-md shadow-sm">
+                                    <button id="profile-online-btn" class="session-type-btn w-1/2 py-2 rounded-l-md border border-primary">Online</button>
+                                    <button id="profile-in-person-btn" class="session-type-btn w-1/2 py-2 rounded-r-md border border-gray-300">In-Person</button>
                                 </div>
                             </div>
-                            <p class="text-primary font-medium mb-3">Counseling Psychologist</p>
-                            <div class="space-y-2 mb-4 text-sm text-gray-600">
-                                <p><i class="fas fa-brain w-4 mr-2 text-gray-400"></i> Specializes in Relationship & Family</p>
-                                <p><i class="fas fa-language w-4 mr-2 text-gray-400"></i> English, Marathi</p>
+                            
+                            <!-- Location Selector (hidden by default) -->
+                            <div id="location-selector" class="mb-4 hidden">
+                                <label for="profile-locations" class="block text-sm font-medium text-gray-700 mb-2">Select Location</label>
+                                <select id="profile-locations" class="w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"></select>
                             </div>
-                            <a href="#booking" data-therapist="Rohan Verma" class="w-full block text-center bg-primary text-white font-semibold py-2.5 rounded-lg cta-button page-link mt-auto">Book a Session</a>
-                        </div>
-                    </div>
-                    <!-- Example Therapist Card 3 -->
-                    <div class="therapist-card bg-white rounded-lg overflow-hidden shadow-sm flex flex-col">
-                        <img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?q=80&w=1961&auto=format&fit=crop" alt="Portrait of Priya Nair" class="w-full h-56 object-cover">
-                        <div class="p-6 flex flex-col flex-grow">
-                            <div class="flex items-center justify-between mb-2">
-                                <h3 class="text-xl font-bold">Priya Nair</h3>
-                                <div class="flex items-center bg-green-100 text-green-700 px-2 py-1 rounded-full text-xs font-semibold">
-                                    <i class="fas fa-check-circle mr-1"></i> RCI Verified
+
+                            <!-- Available Times -->
+                            <div class="mb-4">
+                                <label class="block text-sm font-medium text-gray-700 mb-2">Available Times for Today</label>
+                                <div id="profile-time-slots" class="grid grid-cols-3 gap-2">
+                                    <!-- Time slots added dynamically -->
                                 </div>
                             </div>
-                            <p class="text-primary font-medium mb-3">Trauma-Informed Therapist</p>
-                            <div class="space-y-2 mb-4 text-sm text-gray-600">
-                                <p><i class="fas fa-brain w-4 mr-2 text-gray-400"></i> Specializes in Trauma, PTSD</p>
-                                <p><i class="fas fa-language w-4 mr-2 text-gray-400"></i> English, Tamil, Malayalam</p>
+                            
+                            <!-- Discount Info -->
+                            <div class="bg-highlight/20 text-accent p-3 rounded-lg text-center mb-4">
+                                <p class="font-bold"><i class="fas fa-gift mr-2"></i> Your First Session is FREE!</p>
+                                <p class="text-sm">Find the right fit, risk-free.</p>
                             </div>
-                            <a href="#booking" data-therapist="Priya Nair" class="w-full block text-center bg-primary text-white font-semibold py-2.5 rounded-lg cta-button page-link mt-auto">Book a Session</a>
-                        </div>
-                    </div>
-                    <!-- Example Therapist Card 4 -->
-                    <div class="therapist-card bg-white rounded-lg overflow-hidden shadow-sm flex flex-col">
-                        <img src="https://images.unsplash.com/photo-1618641986557-1ecd230959aa?q=80&w=1887&auto=format&fit=crop" alt="Portrait of Vikram Singh" class="w-full h-56 object-cover">
-                        <div class="p-6 flex flex-col flex-grow">
-                            <div class="flex items-center justify-between mb-2">
-                                <h3 class="text-xl font-bold">Vikram Singh</h3>
-                                <div class="flex items-center bg-green-100 text-green-700 px-2 py-1 rounded-full text-xs font-semibold">
-                                    <i class="fas fa-check-circle mr-1"></i> RCI Verified
-                                </div>
-                            </div>
-                            <p class="text-primary font-medium mb-3">Addiction Counselor</p>
-                           <div class="space-y-2 mb-4 text-sm text-gray-600">
-                                <p><i class="fas fa-brain w-4 mr-2 text-gray-400"></i> Specializes in Substance Abuse</p>
-                                <p><i class="fas fa-language w-4 mr-2 text-gray-400"></i> Hindi, Punjabi, English</p>
-                            </div>
-                            <a href="#booking" data-therapist="Vikram Singh" class="w-full block text-center bg-primary text-white font-semibold py-2.5 rounded-lg cta-button page-link mt-auto">Book a Session</a>
+
+                            <button id="profile-book-now" class="w-full bg-primary text-white font-bold py-3 rounded-lg cta-button page-link">Book Now</button>
                         </div>
                     </div>
                 </div>
@@ -353,19 +462,107 @@
             </div>
         </section>
 
-        <!-- Placeholder Pages -->
+        <!-- Free Sessions Page -->
         <section id="free-sessions" class="page">
-            <div class="container mx-auto px-6 py-24 text-center">
-                <h1 class="text-4xl font-bold">Free Introductory Sessions</h1>
-                <p class="text-lg mt-4 text-gray-600 max-w-3xl mx-auto">Content about the free sessions, why we offer them, and what to expect will be displayed here. This is a placeholder page.</p>
+             <div class="container mx-auto px-6 py-16 lg:py-24">
+                <div class="text-center max-w-3xl mx-auto">
+                    <h1 class="text-4xl font-bold">Your First Session is On Us</h1>
+                    <p class="text-lg mt-4 text-gray-600">Finding the right therapist is a crucial first step. We offer a complimentary 15-minute introductory session to ensure you feel comfortable and confident in your choice, with no commitment required.</p>
+                </div>
+
+                <div class="grid md:grid-cols-3 gap-10 mt-16 text-center">
+                    <!-- Feature 1 -->
+                    <div class="p-8 bg-white rounded-lg shadow-lg">
+                        <div class="bg-primary/10 text-primary w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6">
+                            <i class="fas fa-user-check text-2xl"></i>
+                        </div>
+                        <h3 class="text-xl font-semibold mb-2">Find the Right Fit</h3>
+                        <p class="text-gray-600">Use this session to get to know your therapist, understand their approach, and see if their personality aligns with yours.</p>
+                    </div>
+                    <!-- Feature 2 -->
+                    <div class="p-8 bg-white rounded-lg shadow-lg">
+                        <div class="bg-primary/10 text-primary w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6">
+                            <i class="fas fa-comments text-2xl"></i>
+                        </div>
+                        <h3 class="text-xl font-semibold mb-2">Ask Questions</h3>
+                        <p class="text-gray-600">This is your opportunity to ask about their experience, the therapy process, or any other concerns you may have.</p>
+                    </div>
+                    <!-- Feature 3 -->
+                    <div class="p-8 bg-white rounded-lg shadow-lg">
+                        <div class="bg-primary/10 text-primary w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6">
+                             <i class="fas fa-file-signature text-2xl"></i>
+                        </div>
+                        <h3 class="text-xl font-semibold mb-2">Experience Therapy, Risk-Free</h3>
+                        <p class="text-gray-600">Get a feel for what an online therapy session is like without any financial pressure. It's a safe space to begin your journey.</p>
+                    </div>
+                </div>
+
+                <div class="text-center mt-16">
+                     <a href="#find-therapist" class="bg-highlight text-accent px-8 py-3 rounded-full font-bold text-lg cta-button page-link">
+                        Browse Therapists to Get Started
+                    </a>
+                </div>
             </div>
         </section>
+
         <section id="blog" class="page">
-            <div class="container mx-auto px-6 py-24 text-center">
-                <h1 class="text-4xl font-bold">Solace Blog</h1>
-                <p class="text-lg mt-4 text-gray-600 max-w-3xl mx-auto">Insightful articles on mental health, well-being tips, and stories of healing will appear here. This is a placeholder page.</p>
+             <div class="container mx-auto px-6 py-16">
+                <div class="text-center mb-12">
+                    <h1 class="text-4xl font-bold">From the Solace Blog</h1>
+                    <p class="text-lg text-gray-600 mt-2">Insights and advice for your mental wellness journey.</p>
+                </div>
+
+                <!-- Featured Post -->
+                <div class="bg-white rounded-lg shadow-lg overflow-hidden mb-12 blog-card">
+                    <div class="md:flex">
+                        <div class="md:w-1/2">
+                            <img class="h-64 w-full object-cover md:h-full" src="https://images.unsplash.com/photo-1544717305-2782549b5136?q=80&w=1887&auto=format&fit=crop" alt="Student studying for exams">
+                        </div>
+                        <div class="p-8 md:w-1/2 flex flex-col justify-start">
+                            <div class="uppercase tracking-wide text-sm text-primary font-semibold">Student Wellness</div>
+                            <a href="#" class="block mt-1 text-2xl leading-tight font-bold text-accent hover:underline">Navigating Exam Stress: A Guide for Indian Students</a>
+                            <p class="mt-4 text-gray-600">Exam season in India can be incredibly demanding. Learn practical strategies to manage stress, stay focused, and maintain your mental health during this challenging time.</p>
+                             <div class="mt-6">
+                                <a href="#" class="text-primary font-semibold hover:underline">Read More &rarr;</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Recent Posts Grid -->
+                <div class="grid md:grid-cols-3 gap-8">
+                    <!-- Post 1 -->
+                    <div class="bg-white rounded-lg shadow-lg overflow-hidden blog-card">
+                        <img class="h-48 w-full object-cover" src="https://images.unsplash.com/photo-1517400508447-f8dd518b96db?q=80&w=2070&auto=format&fit=crop" alt="Person meditating in a city">
+                        <div class="p-6">
+                            <div class="uppercase tracking-wide text-sm text-primary font-semibold">Mindfulness</div>
+                            <a href="#" class="block mt-1 text-xl leading-tight font-bold text-accent hover:underline">The Power of Mindfulness in a Bustling City</a>
+                            <p class="mt-2 text-gray-600 text-sm">Find moments of peace and clarity amidst the chaos of urban life with these simple mindfulness exercises.</p>
+                        </div>
+                    </div>
+                     <!-- Post 2 -->
+                    <div class="bg-white rounded-lg shadow-lg overflow-hidden blog-card">
+                        <img class="h-48 w-full object-cover" src="https://images.unsplash.com/photo-1581092921462-6870001a37c7?q=80&w=2070&auto=format&fit=crop" alt="Family talking together">
+                        <div class="p-6">
+                            <div class="uppercase tracking-wide text-sm text-primary font-semibold">Family & Relationships</div>
+                            <a href="#" class="block mt-1 text-xl leading-tight font-bold text-accent hover:underline">Breaking the Stigma: Talking About Mental Health</a>
+                            <p class="mt-2 text-gray-600 text-sm">How to start conversations about mental well-being with your loved ones in a supportive and constructive way.</p>
+                        </div>
+                    </div>
+                     <!-- Post 3 -->
+                    <div class="bg-white rounded-lg shadow-lg overflow-hidden blog-card">
+                        <img class="h-48 w-full object-cover" src="https://images.unsplash.com/photo-1505577106322-2273d2d39941?q=80&w=1974&auto=format&fit=crop" alt="Person practicing self-care">
+                        <div class="p-6">
+                            <div class="uppercase tracking-wide text-sm text-primary font-semibold">Self-Care</div>
+                            <a href="#" class="block mt-1 text-xl leading-tight font-bold text-accent hover:underline">5 Simple Self-Care Practices for a Healthier Mind</a>
+                            <p class="mt-2 text-gray-600 text-sm">Incorporate these easy and effective self-care habits into your daily routine to boost your mental and emotional resilience.</p>
+                        </div>
+                    </div>
+                </div>
+
             </div>
         </section>
+
         <section id="contact" class="page">
             <!-- Contact Form Section -->
             <div class="container mx-auto px-6 py-16">
@@ -409,66 +606,133 @@
                     <h2 class="text-3xl font-bold mb-2">Meet the Team Behind Solace</h2>
                     <p class="text-gray-600 mb-12 max-w-2xl mx-auto">We are a passionate group of developers and designers dedicated to making mental healthcare accessible for everyone.</p>
                     <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
-                    <!-- Team Member Card 1 -->
-                    <div class="team-card bg-white rounded-lg overflow-hidden shadow-sm">
-                        <img src="ansh.jpg" alt="Portrait of Ansh Samaiya" class="w-full h-56 object-cover">
-                        <div class="p-6 text-center">
-                            <h3 class="text-xl font-semibold mb-1">Ansh Samaiya</h3>
-                            <p class="text-primary font-medium mb-4">Ceo (yes hes drunk)</p>
-                            <div class="flex justify-center space-x-4 text-gray-500">
-                                <a href="https://www.instagram.com/noob._.normie/" target="_blank" rel="noopener noreferrer" class="hover:text-primary"><i class="fab fa-instagram text-xl"></i></a>
-                                <a href="#" class="hover:text-primary"><i class="fab fa-github text-xl"></i></a>
-                                <a href="#" class="hover:text-primary"><i class="fab fa-twitter text-xl"></i></a>
+                        <!-- Team Member Card 1 -->
+                        <div class="team-card bg-white rounded-lg overflow-hidden shadow-lg">
+                            <img src="ansh.jpg" alt="Portrait of Ansh Samaiya" class="w-full h-56 object-cover">
+                            <div class="p-6 text-center">
+                                <h3 class="text-xl font-semibold mb-1">Ansh Samaiya</h3>
+                                <p class="text-primary font-medium mb-4">Ceo (yes hes drunk)</p>
+                                <div class="flex justify-center space-x-4 text-gray-500">
+                                    <a href="https://www.instagram.com/noob._.normie/" target="_blank" rel="noopener noreferrer" class="hover:text-primary"><i class="fab fa-instagram text-xl"></i></a>
+                                    <a href="#" class="hover:text-primary"><i class="fab fa-github text-xl"></i></a>
+                                    <a href="#" class="hover:text-primary"><i class="fab fa-twitter text-xl"></i></a>
+                                </div>
                             </div>
                         </div>
-                    </div>
 
-                    <!-- Team Member Card 2 -->
-                    <div class="team-card bg-white rounded-lg overflow-hidden shadow-sm">
-                        <img src="avantika.jpg" alt="Portrait of Avantika" class="w-full h-56 object-cover">
-                        <div class="p-6 text-center">
-                            <h3 class="text-xl font-semibold mb-1">Avantika</h3>
-                            <p class="text-primary font-medium mb-4">Founder</p>
-                            <div class="flex justify-center space-x-4 text-gray-500">
-                                <a href="https://www.instagram.com/4vxnti/" target="_blank" rel="noopener noreferrer" class="hover:text-primary"><i class="fab fa-instagram text-xl"></i></a>
-                                <a href="#" class="hover:text-primary"><i class="fab fa-dribbble text-xl"></i></a>
+                        <!-- Team Member Card 2 -->
+                        <div class="team-card bg-white rounded-lg overflow-hidden shadow-lg">
+                            <img src="avantika.jpg" alt="Portrait of Avantika" class="w-full h-56 object-cover">
+                            <div class="p-6 text-center">
+                                <h3 class="text-xl font-semibold mb-1">Avantika</h3>
+                                <p class="text-primary font-medium mb-4">Founder</p>
+                                <div class="flex justify-center space-x-4 text-gray-500">
+                                    <a href="https://www.instagram.com/4vxnti/" target="_blank" rel="noopener noreferrer" class="hover:text-primary"><i class="fab fa-instagram text-xl"></i></a>
+                                    <a href="#" class="hover:text-primary"><i class="fab fa-dribbble text-xl"></i></a>
+                                </div>
                             </div>
                         </div>
-                    </div>
 
-                    <!-- Team Member Card 3 -->
-                    <div class="team-card bg-white rounded-lg overflow-hidden shadow-sm">
-                        <img src="harshit.jpg" alt="Portrait of Harshit Chauhan" class="w-full h-56 object-cover">
-                        <div class="p-6 text-center">
-                            <h3 class="text-xl font-semibold mb-1">Harshit Chauhan</h3>
-                            <p class="text-primary font-medium mb-4">idhar kya kar rah ho?</p>
-                            <div class="flex justify-center space-x-4 text-gray-500">
-                                <a href="#" class="hover:text-primary"><i class="fab fa-linkedin-in text-xl"></i></a>
-                                <a href="https://www.instagram.com/almostsober_harshit/" target="_blank" rel="noopener noreferrer" class="hover:text-primary"><i class="fab fa-instagram text-xl"></i></a>
+                        <!-- Team Member Card 3 -->
+                        <div class="team-card bg-white rounded-lg overflow-hidden shadow-lg">
+                            <img src="harshit.jpg" alt="Portrait of Harshit Chauhan" class="w-full h-56 object-cover">
+                            <div class="p-6 text-center">
+                                <h3 class="text-xl font-semibold mb-1">Harshit Chauhan</h3>
+                                <p class="text-primary font-medium mb-4">idhar kya kar rah ho?</p>
+                                <div class="flex justify-center space-x-4 text-gray-500">
+                                    <a href="#" class="hover:text-primary"><i class="fab fa-linkedin-in text-xl"></i></a>
+                                    <a href="https://www.instagram.com/almostsober_harshit/" target="_blank" rel="noopener noreferrer" class="hover:text-primary"><i class="fab fa-instagram text-xl"></i></a>
+                                </div>
                             </div>
                         </div>
-                    </div>
 
-                    <!-- Team Member Card 4 -->
-                    <div class="team-card bg-white rounded-lg overflow-hidden shadow-sm">
-                        <img src="mohit.jpg" alt="Portrait of Mohit" class="w-full h-56 object-cover">
-                        <div class="p-6 text-center">
-                            <h3 class="text-xl font-semibold mb-1">Mohit</h3>
-                            <p class="text-primary font-medium mb-4">Product Manager</p>
-                            <div class="flex justify-center space-x-4 text-gray-500">
-                                <a href="#" class="hover:text-primary"><i class="fab fa-linkedin-in text-xl"></i></a>
-                                <a href="https://www.instagram.com/moh.1tt._/" target="_blank" rel="noopener noreferrer" class="hover:text-primary"><i class="fab fa-instagram text-xl"></i></a>
+                        <!-- Team Member Card 4 -->
+                        <div class="team-card bg-white rounded-lg overflow-hidden shadow-lg">
+                            <img src="mohit.jpg" alt="Portrait of Mohit" class="w-full h-56 object-cover">
+                            <div class="p-6 text-center">
+                                <h3 class="text-xl font-semibold mb-1">Mohit</h3>
+                                <p class="text-primary font-medium mb-4">Product Manager</p>
+                                <div class="flex justify-center space-x-4 text-gray-500">
+                                    <a href="#" class="hover:text-primary"><i class="fab fa-linkedin-in text-xl"></i></a>
+                                    <a href="https://www.instagram.com/moh.1tt._/" target="_blank" rel="noopener noreferrer" class="hover:text-primary"><i class="fab fa-instagram text-xl"></i></a>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
                 </div>
             </section>
         </section>
+        
+        <!-- Login Page -->
         <section id="login" class="page">
-             <div class="container mx-auto px-6 py-24 text-center">
-                <h1 class="text-4xl font-bold">Client & Therapist Login</h1>
-                <p class="text-lg mt-4 text-gray-600 max-w-3xl mx-auto">The login portal for existing clients and registered therapists will be here. This is a placeholder page.</p>
+             <div class="min-h-[calc(100vh-80px)] flex items-center justify-center p-4">
+                <div class="w-full max-w-5xl mx-auto bg-white rounded-2xl shadow-xl overflow-hidden grid md:grid-cols-2">
+                    
+                    <!-- Left Column: Login Form -->
+                    <div class="p-8 md:p-12">
+                         <div>
+                            <div class="flex justify-center md:justify-start">
+                                 <i class="fas fa-brain text-primary text-5xl"></i>
+                            </div>
+                            <h2 class="mt-6 text-center md:text-left text-3xl font-bold text-accent">
+                                Sign in to your account
+                            </h2>
+                            <p class="mt-2 text-center md:text-left text-sm text-gray-600">
+                                Or
+                                <a href="#booking" data-therapist="general" class="font-medium text-primary hover:text-primary/80 page-link">
+                                    start with a free session
+                                </a>
+                            </p>
+                        </div>
+                        <form class="mt-8 space-y-6" action="#" method="POST">
+                            <input type="hidden" name="remember" value="true">
+                            <div class="rounded-md shadow-sm -space-y-px">
+                                <div>
+                                    <label for="email-address" class="sr-only">Email address</label>
+                                    <input id="email-address" name="email" type="email" autocomplete="email" required class="appearance-none rounded-none relative block w-full px-3 py-3 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-primary focus:border-primary focus:z-10 sm:text-sm" placeholder="Email address">
+                                </div>
+                                <div>
+                                    <label for="password" class="sr-only">Password</label>
+                                    <input id="password" name="password" type="password" autocomplete="current-password" required class="appearance-none rounded-none relative block w-full px-3 py-3 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-primary focus:border-primary focus:z-10 sm:text-sm" placeholder="Password">
+                                </div>
+                            </div>
+
+                            <div class="flex items-center justify-between">
+                                <div class="flex items-center">
+                                    <input id="remember-me" name="remember-me" type="checkbox" class="h-4 w-4 text-primary focus:ring-primary border-gray-300 rounded">
+                                    <label for="remember-me" class="ml-2 block text-sm text-gray-900">
+                                        Remember me
+                                    </label>
+                                </div>
+
+                                <div class="text-sm">
+                                    <a href="#" class="font-medium text-primary hover:text-primary/80">
+                                        Forgot your password?
+                                    </a>
+                                </div>
+                            </div>
+
+                            <div>
+                                <button type="submit" class="group relative w-full flex justify-center py-3 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-primary hover:bg-primary/90 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary cta-button">
+                                    <span class="absolute left-0 inset-y-0 flex items-center pl-3">
+                                        <i class="fas fa-lock h-4 w-4 text-indigo-200 group-hover:text-indigo-100"></i>
+                                    </span>
+                                    Sign in
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+
+                     <!-- Right Column: Welcome Content -->
+                    <div class="hidden md:block relative">
+                         <img class="absolute inset-0 w-full h-full object-cover object-bottom" src="https://i.pinimg.com/736x/e7/1e/d6/e71ed60f7fd72006a039295e3956e030.jpg" alt="Calm natural scenery">
+                         <div class="relative z-10 bg-primary/70 h-full p-12 text-white flex flex-col justify-center">
+                            <h2 class="text-3xl font-bold">Welcome to Solace</h2>
+                            <p class="mt-4 leading-relaxed">Your safe space to connect, heal, and grow. Sign in to manage your sessions and continue your journey towards mental well-being.</p>
+                         </div>
+                    </div>
+
+                </div>
             </div>
         </section>
     </main>
@@ -516,95 +780,350 @@
     <button id="scrollToTopBtn" class="hidden fixed bottom-6 right-6 bg-primary text-white w-12 h-12 rounded-full shadow-lg cta-button justify-center items-center">
         <i class="fas fa-arrow-up text-xl"></i>
     </button>
-
+    
     <script>
         document.addEventListener('DOMContentLoaded', function() {
+            // --- DATA ---
+            const therapistsData = [
+                {
+                    id: 1,
+                    name: "Dr. Anjali Sharma",
+                    title: "Clinical Psychologist",
+                    education: "Ph.D. in Clinical Psychology",
+                    experience: "10+ Years Experience",
+                    rate: "₹450/ hour",
+                    image: "https://media.istockphoto.com/id/1395128697/photo/psychologist-session.jpg?s=612x612&w=0&k=20&c=VL2uUVLzrb8VW6WiT-nyvoM3GkZE8kDicDen4uP-MJ0=",
+                    specialties: ["Anxiety", "Depression", "OCD"],
+                    languages: ["Hindi", "English"],
+                    about: "With over 10 years of experience, Dr. Sharma specializes in cognitive-behavioral therapy (CBT) to help clients navigate anxiety and depressive disorders. She believes in a collaborative approach to foster self-awareness and resilience.",
+                    expertise: ["Cognitive Behavioral Therapy (CBT)", "Mindfulness-Based Stress Reduction", "Clinical Psychology"],
+                    concerns: ["Anxiety", "Depression", "Stress Management", "OCD", "Phobias"],
+                    availability: ["9:00 AM", "10:00 AM", "11:00 AM", "2:00 PM", "3:00 PM", "4:00 PM"],
+                    sessionTypes: ["Online", "In-Person"],
+                    locations: ["Bandra, Mumbai", "Andheri, Mumbai"],
+                    affiliations: ["Indian Association of Clinical Psychologists (IACP)"]
+                },
+                {
+                    id: 2,
+                    name: "Rohan Verma",
+                    title: "Counseling Psychologist",
+                    education: "M.A. in Counseling Psychology",
+                    experience: "8 Years Experience",
+                    rate: "₹500 / hour",
+                    image: "https://placehold.co/600x400/0C4444/FFFFFF?text=Rohan+V.",
+                    specialties: ["Relationship Issues", "Family Conflict"],
+                    languages: ["English", "Marathi"],
+                    about: "Rohan Verma focuses on relationship counseling and family therapy. He is passionate about helping individuals and families improve communication, resolve conflicts, and build stronger, healthier bonds.",
+                    expertise: ["Family Systems Therapy", "Couples Counseling", "Conflict Resolution"],
+                    concerns: ["Marital Problems", "Family Conflict", "Parenting Support", "Communication Issues"],
+                    availability: ["10:00 AM", "11:00 AM", "1:00 PM", "2:00 PM", "5:00 PM"],
+                    sessionTypes: ["Online"],
+                    locations: [],
+                    affiliations: ["Mumbai Counselors Association"]
+                },
+                {
+                    id: 3,
+                    name: "Priya Nair",
+                    title: "Trauma-Informed Therapist",
+                    education: "M.Sc. in Psychology, Certified EMDR Practitioner",
+                    experience: "12 Years Experience",
+                    rate: "₹430 / hour",
+                    image: "https://images.unsplash.com/photo-1580489944761-15a19d654956?q=80&w=1961&auto=format&fit=crop",
+                    specialties: ["Trauma", "PTSD"],
+                    languages: ["English", "Tamil", "Malayalam"],
+                    about: "Priya Nair is a certified trauma therapist dedicated to supporting survivors of trauma. She uses evidence-based approaches like EMDR to help clients process difficult experiences and reclaim their lives.",
+                    expertise: ["EMDR", "Trauma-Focused CBT", "Somatic Experiencing"],
+                    concerns: ["PTSD", "Childhood Trauma", "Grief and Loss", "Abuse Survivors"],
+                    availability: ["9:00 AM", "11:00 AM", "1:00 PM", "3:00 PM"],
+                    sessionTypes: ["Online", "In-Person"],
+                    locations: ["Koramangala, Bengaluru"],
+                    affiliations: ["EMDR Association of India"]
+                },
+                {
+                    id: 4,
+                    name: "Vikram Singh",
+                    title: "Addiction Counselor",
+                    education: "M.A. in Social Work",
+                    experience: "7 Years Experience",
+                    rate: "₹520 / hour",
+                    image: "https://images.unsplash.com/photo-1618641986557-1ecd230959aa?q=80&w=1887&auto=format&fit=crop",
+                    specialties: ["Substance Abuse", "Behavioral Addictions"],
+                    languages: ["Hindi", "Punjabi", "English"],
+                    about: "Vikram Singh provides compassionate support for individuals struggling with addiction. He combines motivational interviewing and relapse prevention strategies to empower clients on their path to recovery.",
+                    expertise: ["Motivational Interviewing", "Relapse Prevention", "Group Therapy"],
+                    concerns: ["Alcohol Addiction", "Drug Abuse", "Gambling Addiction", "Co-occurring Disorders"],
+                    availability: ["12:00 PM", "1:00 PM", "2:00 PM", "3:00 PM", "4:00 PM", "5:00 PM"],
+                    sessionTypes: ["Online"],
+                    locations: [],
+                    affiliations: ["Association of Professional Psychologists, Punjab"]
+                }
+            ];
+            
+            const tagStyles = {
+                // Concerns
+                'Anxiety': { icon: 'fas fa-wind', color: 'bg-blue-100 text-blue-800' },
+                'Depression': { icon: 'fas fa-cloud-rain', color: 'bg-indigo-100 text-indigo-800' },
+                'Stress Management': { icon: 'fas fa-hourglass-half', color: 'bg-yellow-100 text-yellow-800' },
+                'OCD': { icon: 'fas fa-sync-alt', color: 'bg-purple-100 text-purple-800' },
+                'Phobias': { icon: 'fas fa-spider', color: 'bg-red-100 text-red-800' },
+                'Marital Problems': { icon: 'fas fa-heart-broken', color: 'bg-pink-100 text-pink-800' },
+                'Family Conflict': { icon: 'fas fa-users', color: 'bg-orange-100 text-orange-800' },
+                'Parenting Support': { icon: 'fas fa-baby', color: 'bg-teal-100 text-teal-800' },
+                'PTSD': { icon: 'fas fa-bolt', color: 'bg-red-100 text-red-800' },
+                'Grief and Loss': { icon: 'fas fa-leaf', color: 'bg-gray-100 text-gray-800' },
+                'Alcohol Addiction': { icon: 'fas fa-wine-bottle', color: 'bg-purple-100 text-purple-800' },
+                'Drug Abuse': { icon: 'fas fa-pills', color: 'bg-red-100 text-red-800' },
+                 'Communication Issues': { icon: 'fas fa-comments', color: 'bg-blue-100 text-blue-800' },
+                 'Childhood Trauma': { icon: 'fas fa-child', color: 'bg-yellow-100 text-yellow-800' },
+                 'Abuse Survivors': { icon: 'fas fa-shield-alt', color: 'bg-green-100 text-green-800' },
+                 'Gambling Addiction': { icon: 'fas fa-dice', color: 'bg-red-100 text-red-800' },
+                 'Co-occurring Disorders': { icon: 'fas fa-layer-group', color: 'bg-indigo-100 text-indigo-800' },
+
+
+                // Expertise
+                'Cognitive Behavioral Therapy (CBT)': { icon: 'fas fa-brain', color: 'bg-green-100 text-green-800' },
+                'Mindfulness-Based Stress Reduction': { icon: 'fas fa-spa', color: 'bg-cyan-100 text-cyan-800' },
+                'Couples Counseling': { icon: 'fas fa-user-friends', color: 'bg-pink-100 text-pink-800' },
+                'EMDR': { icon: 'fas fa-eye', color: 'bg-indigo-100 text-indigo-800' },
+                'Motivational Interviewing': { icon: 'fas fa-comments-dollar', color: 'bg-blue-100 text-blue-800' },
+                'Group Therapy': { icon: 'fas fa-users', color: 'bg-orange-100 text-orange-800' },
+                'Clinical Psychology': { icon: 'fas fa-stethoscope', color: 'bg-teal-100 text-teal-800' },
+                'Family Systems Therapy': { icon: 'fas fa-sitemap', color: 'bg-purple-100 text-purple-800' },
+                'Conflict Resolution': { icon: 'fas fa-handshake', color: 'bg-yellow-100 text-yellow-800' },
+                'Trauma-Focused CBT': { icon: 'fas fa-band-aid', color: 'bg-red-100 text-red-800' },
+                'Somatic Experiencing': { icon: 'fas fa-running', color: 'bg-green-100 text-green-800' },
+                'Relapse Prevention': { icon: 'fas fa-undo', color: 'bg-blue-100 text-blue-800' },
+                
+                // Default
+                'default': { icon: 'fas fa-check-circle', color: 'bg-gray-100 text-gray-800' }
+            };
+
+            // --- ELEMENTS ---
             const pages = document.querySelectorAll('.page');
-            const navLinks = document.querySelectorAll('.page-link');
-            const headerNavLinks = document.querySelectorAll('#main-header .nav-link');
+            const mainHeader = document.getElementById('main-header');
             const mobileMenuButton = document.getElementById('mobile-menu-button');
             const mobileMenu = document.getElementById('mobile-menu');
-            const mainHeader = document.getElementById('main-header');
-            
+            const therapistGridContainer = document.getElementById('therapist-grid-container');
+            const noResultsDiv = document.getElementById('no-results');
+            const searchInput = document.getElementById('search-input');
+            const specialtyFilter = document.getElementById('specialty-filter');
+            const languageFilter = document.getElementById('language-filter');
+            const searchButton = document.getElementById('search-button');
+
             const bookingForm = document.getElementById('booking-form');
             const bookingFormContainer = document.getElementById('booking-form-container');
             const bookingConfirmation = document.getElementById('booking-confirmation');
             const therapistNameInput = document.getElementById('therapist-name');
             const bookAnotherButton = document.getElementById('book-another');
-
             const scrollToTopBtn = document.getElementById('scrollToTopBtn');
 
-            // --- Page Navigation Logic ---
-            const showPage = (pageId) => {
-                pages.forEach(page => {
-                    page.classList.remove('active');
-                });
+            // --- PAGE NAVIGATION LOGIC ---
+            const showPage = (pageId, data = null) => {
+                pages.forEach(page => page.classList.remove('active'));
                 const activePage = document.getElementById(pageId);
                 if (activePage) {
                     activePage.classList.add('active');
                     window.scrollTo(0, 0);
                 }
 
-                // Update active state for header nav links
+                if (pageId === 'therapist-profile' && data) {
+                    populateTherapistProfile(data);
+                }
+
+                updateActiveNavLinks(pageId);
+            };
+
+            const updateActiveNavLinks = (pageId) => {
+                const headerNavLinks = document.querySelectorAll('#main-header .nav-link');
                 headerNavLinks.forEach(link => {
                     link.classList.remove('active-link');
-                    if(link.getAttribute('href') === `#${pageId}`) {
+                    if (link.getAttribute('href') === `#${pageId}`) {
                         link.classList.add('active-link');
                     }
                 });
             };
+            
+            // --- DYNAMIC CONTENT POPULATION ---
+            const populateTherapistGrid = (filteredData = therapistsData) => {
+                if (!therapistGridContainer) return;
+                therapistGridContainer.innerHTML = '';
 
-            const handleNavClick = (event) => {
-                event.preventDefault();
-                const target = event.currentTarget;
-                const pageId = target.getAttribute('href').substring(1);
+                if (filteredData.length === 0) {
+                    noResultsDiv.classList.remove('hidden');
+                } else {
+                    noResultsDiv.classList.add('hidden');
+                }
+
+                filteredData.forEach(therapist => {
+                    const card = `
+                        <div class="therapist-card bg-white rounded-lg overflow-hidden shadow-lg flex flex-col">
+                            <img src="${therapist.image}" alt="Portrait of ${therapist.name}" class="w-full h-56 object-cover">
+                            <div class="p-6 flex flex-col flex-grow">
+                                <div class="flex items-center justify-between mb-2">
+                                    <h3 class="text-xl font-bold">${therapist.name}</h3>
+                                    <div class="flex items-center bg-green-100 text-green-700 px-2 py-1 rounded-full text-xs font-semibold">
+                                        <i class="fas fa-check-circle mr-1"></i> RCI Verified
+                                    </div>
+                                </div>
+                                <p class="text-primary font-medium mb-3">${therapist.title}</p>
+                                <div class="space-y-2 mb-4 text-sm text-gray-600 min-h-[4rem]">
+                                    <p><i class="fas fa-brain w-4 mr-2 text-gray-400"></i> Specializes in ${therapist.specialties.join(', ')}</p>
+                                    <p><i class="fas fa-language w-4 mr-2 text-gray-400"></i> ${therapist.languages.join(', ')}</p>
+                                </div>
+                                <div class="mt-auto grid grid-cols-2 gap-2">
+                                    <a href="#therapist-profile" data-therapist-id="${therapist.id}" class="view-profile-link w-full block text-center bg-primary text-white font-semibold py-2.5 rounded-lg cta-button">View Profile</a>
+                                    <a href="#booking" data-therapist="${therapist.name}" class="quick-book-link w-full block text-center bg-gray-200 text-gray-800 font-semibold py-2.5 rounded-lg cta-button">Quick Book</a>
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                    therapistGridContainer.innerHTML += card;
+                });
+            };
+
+            const populateTherapistProfile = (therapist) => {
+                document.getElementById('profile-breadcrumb-name').textContent = therapist.name;
+                document.getElementById('profile-image').src = therapist.image;
+                document.getElementById('profile-image').alt = `Portrait of ${therapist.name}`;
+                document.getElementById('profile-name').textContent = therapist.name;
+                document.getElementById('profile-title').textContent = therapist.title;
+                document.getElementById('profile-experience').textContent = therapist.experience;
+                document.getElementById('profile-education').textContent = therapist.education;
+                document.getElementById('profile-about').textContent = therapist.about;
+                document.getElementById('profile-rate').textContent = therapist.rate;
+
+                const createStyledTags = (items) => {
+                    return items.map(item => {
+                        const style = tagStyles[item.trim()] || tagStyles['default'];
+                        return `
+                            <div class="flex items-center p-3 rounded-lg ${style.color}">
+                                <i class="${style.icon} w-5 text-center mr-3"></i>
+                                <span class="font-medium text-sm">${item}</span>
+                            </div>
+                        `;
+                    }).join('');
+                };
                 
-                // Handle booking link specific logic
-                if (pageId === 'booking' && target.dataset.therapist) {
-                    const therapistName = target.dataset.therapist;
-                    if (therapistName === 'general') {
-                        therapistNameInput.value = 'General Inquiry / Find a match for me';
-                    } else {
-                        therapistNameInput.value = therapistName;
-                    }
-                    // Reset booking form view
-                    bookingFormContainer.style.display = 'block';
-                    bookingConfirmation.style.display = 'none';
+                const createLanguageTags = (languages) => languages.map(lang => `<span class="bg-gray-100 text-gray-800 text-base font-medium px-4 py-2 rounded-full">${lang}</span>`).join('');
+                const createAffiliationItems = (affiliations) => affiliations.map(aff => `<p class="text-gray-700"><i class="fas fa-award mr-2 text-gray-400"></i>${aff}</p>`).join('');
+
+                document.getElementById('profile-concerns').innerHTML = createStyledTags(therapist.concerns);
+                document.getElementById('profile-expertise').innerHTML = createStyledTags(therapist.expertise);
+                document.getElementById('profile-languages-box').innerHTML = createLanguageTags(therapist.languages);
+                document.getElementById('profile-affiliations-box').innerHTML = createAffiliationItems(therapist.affiliations);
+                
+                // Booking widget logic
+                const onlineBtn = document.getElementById('profile-online-btn');
+                const inPersonBtn = document.getElementById('profile-in-person-btn');
+                const locationSelector = document.getElementById('location-selector');
+                const locationDropdown = document.getElementById('profile-locations');
+
+                onlineBtn.classList.add('active');
+                inPersonBtn.classList.remove('active');
+                locationSelector.classList.add('hidden');
+
+                if (therapist.sessionTypes.includes('In-Person')) {
+                    inPersonBtn.disabled = false;
+                    inPersonBtn.classList.remove('bg-gray-100', 'text-gray-400', 'cursor-not-allowed');
+                    inPersonBtn.classList.add('border-gray-300');
+                    locationDropdown.innerHTML = therapist.locations.map(loc => `<option>${loc}</option>`).join('');
+                } else {
+                    inPersonBtn.disabled = true;
+                    inPersonBtn.classList.add('bg-gray-100', 'text-gray-400', 'cursor-not-allowed');
+                    inPersonBtn.classList.remove('border-gray-300');
+                    locationDropdown.innerHTML = '';
                 }
                 
-                history.pushState(null, '', `#${pageId}`);
-                showPage(pageId);
+                // Corrected Event Listeners for Session Type
+                onlineBtn.addEventListener('click', () => {
+                    if (onlineBtn.classList.contains('active')) return; 
 
-                // Close mobile menu on navigation
+                    onlineBtn.classList.add('active');
+                    inPersonBtn.classList.remove('active');
+                    locationSelector.classList.add('hidden');
+                });
+
+                inPersonBtn.addEventListener('click', () => {
+                    if (inPersonBtn.disabled || inPersonBtn.classList.contains('active')) return;
+
+                    inPersonBtn.classList.add('active');
+                    onlineBtn.classList.remove('active');
+                    locationSelector.classList.remove('hidden');
+                });
+                
+                const timeSlotsEl = document.getElementById('profile-time-slots');
+                timeSlotsEl.innerHTML = therapist.availability.map(time => `<button class="time-slot border border-gray-300 text-gray-700 rounded-md py-2 text-sm hover:border-primary">${time}</button>`).join('');
+                
+                timeSlotsEl.querySelectorAll('.time-slot').forEach(slot => {
+                    slot.addEventListener('click', () => {
+                        timeSlotsEl.querySelectorAll('.time-slot').forEach(s => s.classList.remove('selected'));
+                        slot.classList.add('selected');
+                    });
+                });
+                
+                const bookNowBtn = document.getElementById('profile-book-now');
+                bookNowBtn.setAttribute('href', '#booking');
+                bookNowBtn.setAttribute('data-therapist', therapist.name);
+            };
+            
+             // --- SEARCH & FILTER LOGIC ---
+            const filterTherapists = () => {
+                const searchTerm = searchInput.value.toLowerCase();
+                const selectedSpecialty = specialtyFilter.value;
+                const selectedLanguage = languageFilter.value;
+
+                const filtered = therapistsData.filter(therapist => {
+                    const nameMatch = therapist.name.toLowerCase().includes(searchTerm);
+                    const specialtyMatch = !selectedSpecialty || therapist.specialties.some(s => s.includes(selectedSpecialty));
+                    const languageMatch = !selectedLanguage || therapist.languages.includes(selectedLanguage);
+
+                    return nameMatch && specialtyMatch && languageMatch;
+                });
+
+                populateTherapistGrid(filtered);
+            };
+
+
+            // --- EVENT LISTENERS ---
+            searchButton.addEventListener('click', filterTherapists);
+            
+            document.body.addEventListener('click', (event) => {
+                const target = event.target.closest('.page-link, .view-profile-link, .quick-book-link');
+                if (!target) return;
+
+                event.preventDefault();
+                const pageId = target.getAttribute('href').substring(1);
+
+                if (target.classList.contains('view-profile-link')) {
+                    const therapistId = parseInt(target.dataset.therapistId);
+                    const therapist = therapistsData.find(t => t.id === therapistId);
+                    showPage('therapist-profile', therapist);
+                } else if (target.classList.contains('quick-book-link') || target.id === 'profile-book-now' || pageId === 'booking') {
+                     const therapistName = target.dataset.therapist;
+                     therapistNameInput.value = (therapistName === 'general') ? 'General Inquiry / Find a match for me' : therapistName;
+                     bookingFormContainer.style.display = 'block';
+                     bookingConfirmation.style.display = 'none';
+                     showPage('booking');
+                } else {
+                    showPage(pageId);
+                }
+
                 if (!mobileMenu.classList.contains('hidden')) {
                     mobileMenu.classList.add('hidden');
                 }
-            };
-
-            navLinks.forEach(link => {
-                link.addEventListener('click', handleNavClick);
             });
-
-            // Handle browser back/forward buttons
+            
             window.addEventListener('popstate', () => {
                 const pageId = location.hash.substring(1) || 'home';
                 showPage(pageId);
             });
 
-            // Show initial page based on URL hash
-            const initialPageId = location.hash.substring(1) || 'home';
-            showPage(initialPageId);
-
-            // --- Mobile Menu ---
             mobileMenuButton.addEventListener('click', () => {
                 mobileMenu.classList.toggle('hidden');
             });
 
-            // --- Booking Form Logic ---
             bookingForm.addEventListener('submit', (e) => {
                 e.preventDefault();
-                // In a real app, you would send this data to a server
-                console.log('Form submitted');
                 bookingFormContainer.style.display = 'none';
                 bookingConfirmation.style.display = 'block';
                 window.scrollTo(0, bookingFormContainer.offsetTop - 100);
@@ -612,9 +1131,9 @@
 
             bookAnotherButton.addEventListener('click', () => {
                 showPage('find-therapist');
+                bookingForm.reset();
             });
-            
-            // --- Scroll-to-Top Button ---
+
             window.onscroll = function() {
                 if (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) {
                     scrollToTopBtn.style.display = "flex";
@@ -627,11 +1146,12 @@
                 window.scrollTo({ top: 0, behavior: 'smooth' });
             });
 
+            // --- INITIALIZATION ---
+            populateTherapistGrid();
+            const initialPageId = location.hash.substring(1) || 'home';
+            showPage(initialPageId);
         });
     </script>
-
 </body>
 </html>
-
-
 
